@@ -5,6 +5,8 @@ from pathlib import Path
 from pypdf import PdfReader
 from pypdf.errors import PdfReadError
 
+from .ocr import OcrTextExtractionError, extract_pdf_text as extract_text_with_ocr
+
 
 class PdfTextExtractionError(RuntimeError):
     pass
@@ -24,6 +26,14 @@ def extract_pdf_text(pdf_path: str | Path) -> str:
             pages.append(text)
 
     combined = "\n\n".join(pages).strip()
-    if not combined:
-        raise PdfTextExtractionError("PDF has no extractable text")
-    return combined
+    if combined:
+        return combined
+
+    try:
+        ocr_text = extract_text_with_ocr(path).strip()
+    except OcrTextExtractionError:
+        ocr_text = ""
+
+    if ocr_text:
+        return ocr_text
+    raise PdfTextExtractionError("PDF has no extractable text")
