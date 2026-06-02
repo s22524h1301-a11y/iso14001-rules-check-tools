@@ -16,5 +16,6 @@ All notable changes to this project will be documented in this file.
 
 ### Notes
 
+- v0.1.0 scope: selectable-text PDFs, scanned PDFs with OCR fallback, ISO 14001:2015 clause mapping, and text/JSON output
 - This is the first starting version of the ISO 14001 project
 - The clause catalog will continue to be refined for environmental management use cases

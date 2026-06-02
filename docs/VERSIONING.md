@@ -28,4 +28,5 @@ This project uses SemVer-style versioning while it is still in active developmen
 ## Starting point
 
 - The project starts at `v0.1.0`
+- `v0.1.0` covers selectable-text PDFs, scanned PDFs with OCR fallback, ISO 14001:2015 clause mapping, and text/JSON output
 - Future releases will move forward as the ISO 14001 clause catalog and analysis flow grow
