@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.1] - 2026-06-03
+
+### Changed
+
+- OCR stability patch for the existing ISO 14001-only workflow
+- Release docs now describe the fallback-focused scope for scanned PDFs
+
 ## [v0.1.0] - 2026-06-02
 
 ### Added
