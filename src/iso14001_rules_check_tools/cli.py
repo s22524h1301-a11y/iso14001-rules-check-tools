@@ -8,7 +8,7 @@ from iso14001_rules_check_tools.section_parser import split_into_sections
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="iso14001-rules-check")
-    parser.add_argument("pdf_path", help="Path to a selectable-text PDF")
+    parser.add_argument("pdf_path", help="Path to a PDF document with OCR fallback")
     parser.add_argument("--json", action="store_true", help="Print JSON output")
     return parser
 
