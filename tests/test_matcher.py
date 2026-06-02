@@ -32,6 +32,34 @@ def test_empty_catalog_returns_no_matches():
     assert matches == ()
 
 
+def test_heading_title_hit_ranks_above_body_only_hit():
+    section = Section(
+        section_id="2.1",
+        heading="Communication",
+        body="The organization reviews internal issues, external issues, the organization context, and environmental context.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "7.4"
+    assert any(match.clause_id == "4.1" for match in matches)
+    assert matches[0].score > next(match.score for match in matches if match.clause_id == "4.1")
+
+
+def test_keyword_only_match_has_positive_score():
+    section = Section(
+        section_id="9.2.2",
+        heading="Process review",
+        body="The auditor reviewed the process and confirmed the findings.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "9.2"
+    assert matches[0].score > 0
+    assert "matched keywords" in matches[0].reason
+
+
 def test_policing_words_do_not_create_false_matches():
     section = Section(
         section_id="4.2",
@@ -42,6 +70,18 @@ def test_policing_words_do_not_create_false_matches():
     matches = match_section(section, default_clause_catalog())
 
     assert [match.clause_id for match in matches] == ["7.5"]
+
+
+def test_non_matches_are_excluded():
+    section = Section(
+        section_id="x",
+        heading="Unrelated note",
+        body="This text does not reference any ISO 14001 clause keywords.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches == ()
 
 
 def test_single_clear_keyword_match_is_kept_without_title_hit():

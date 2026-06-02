@@ -33,7 +33,10 @@ def _score_section_against_clause(section: Section, clause: Clause) -> ClauseMat
         for keyword in clause.keywords
         if _keyword_matches(_normalize(keyword), section_text)
     )
-    title_score = 3 if title_hits_heading else 1 if title_hits_body else 0
+    # Title hits are the strongest signal. A heading match should outrank any
+    # body-only keyword pile, while a title phrase found only in the body still
+    # counts but with a smaller boost.
+    title_score = 100 if title_hits_heading else 10 if title_hits_body else 0
     score = len(matched_keywords) + title_score
     reason_parts = []
     if title_hits_heading:
