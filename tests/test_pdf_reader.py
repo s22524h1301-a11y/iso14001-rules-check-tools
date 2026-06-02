@@ -3,6 +3,7 @@
 import pytest
 from reportlab.pdfgen import canvas
 
+import iso14001_rules_check_tools.pdf_reader as pdf_reader
 from iso14001_rules_check_tools.pdf_reader import PdfTextExtractionError, extract_pdf_text
 
 
@@ -27,10 +28,22 @@ def test_extract_pdf_text_returns_combined_text(tmp_path: Path):
     assert "Hello ISO 14001" in result
 
 
-def test_extract_pdf_text_raises_when_no_text_is_available(tmp_path: Path):
+def test_extract_pdf_text_uses_ocr_when_direct_extraction_is_empty(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
     pdf_path = tmp_path / "blank.pdf"
     _write_blank_pdf(pdf_path)
+    monkeypatch.setattr(pdf_reader, "extract_ocr_text", lambda _path: "Recovered via OCR")
 
-    with pytest.raises(PdfTextExtractionError, match="no extractable text"):
+    result = extract_pdf_text(pdf_path)
+
+    assert result == "Recovered via OCR"
+
+
+def test_extract_pdf_text_raises_for_unreadable_pdf(tmp_path: Path):
+    pdf_path = tmp_path / "broken.pdf"
+    pdf_path.write_text("not a pdf", encoding="utf-8")
+
+    with pytest.raises(PdfTextExtractionError, match="Unable to read PDF"):
         extract_pdf_text(pdf_path)
 

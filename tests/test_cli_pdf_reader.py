@@ -42,5 +42,6 @@ def test_cli_fails_on_blank_pdf(tmp_path: Path):
     )
 
     assert result.returncode != 0
-    assert "no extractable text" in result.stderr.lower()
+    stderr = result.stderr.lower()
+    assert "ocr produced no readable text" in stderr or "ocr support is not installed" in stderr
 
