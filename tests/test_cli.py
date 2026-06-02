@@ -10,4 +10,5 @@ def test_cli_help_runs():
     )
     assert result.returncode == 0
     assert "usage:" in result.stdout.lower()
+    assert "ocr fallback" in result.stdout.lower()
 
