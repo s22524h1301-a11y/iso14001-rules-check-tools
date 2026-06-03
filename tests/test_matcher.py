@@ -57,6 +57,18 @@ def test_single_clear_keyword_match_is_kept_without_title_hit():
     assert matches[0].clause_id == "5.2"
 
 
+def test_operational_controls_section_prefers_clause_8_1():
+    section = Section(
+        section_id="8.1.1",
+        heading="Operational controls",
+        body="The organization shall establish criteria for its processes, control outsourced processes, and review planned changes.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "8.1"
+
+
 def test_matcher_returns_all_positive_matches_without_truncation():
     section = Section(
         section_id="x",
@@ -104,6 +116,18 @@ def test_corrective_action_section_matches_clause_10_2():
     matches = match_section(section, default_clause_catalog())
 
     assert matches[0].clause_id == "10.2"
+
+
+def test_applicable_requirements_section_matches_clause_6_1_3():
+    section = Section(
+        section_id="6.1.3.1",
+        heading="Applicable requirements",
+        body="The organization shall determine applicable requirements for its environmental aspects.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "6.1.3"
 
 
 def test_continual_improvement_section_matches_clause_10_3():
