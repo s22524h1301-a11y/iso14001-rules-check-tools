@@ -18,6 +18,7 @@ def test_environmental_policy_section_prefers_clause_5_2():
     matches = match_section(section, default_clause_catalog())
 
     assert matches[0].clause_id == "5.2"
+    assert "environmental policy" in matches[0].matched_keywords
 
 
 def test_empty_catalog_returns_no_matches():
