@@ -23,6 +23,7 @@ class ClauseMatch:
     clause_id: str
     clause_title: str
     score: int
+    matched_keywords: tuple[str, ...]
     reason: str
 
 

@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.2.0] - 2026-06-03
+
+### Added
+
+- CSV report output for section-level analysis
+- Match evidence surfaced to the reporting layer
+- Better spreadsheet-friendly review flow for ISO 14001 results
+
+### Changed
+
+- Improved clause catalog coverage for high-value ISO 14001 topics
+- Refined clause ranking and report payloads
+- Updated CLI help and docs for `--csv`
+
+### Notes
+
+- JSON and plain text output remain available
+- The project remains a standalone ISO 14001 tool, separate from the ISO 9001 repository
+
 ## [v0.1.0] - 2026-06-02
 
 ### Added

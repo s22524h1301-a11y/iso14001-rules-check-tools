@@ -1,15 +1,21 @@
-﻿import argparse
+import argparse
 import sys
 
 from iso14001_rules_check_tools.pdf_reader import PdfTextExtractionError, extract_pdf_text
-from iso14001_rules_check_tools.reporter import render_section_report, render_section_report_json
+from iso14001_rules_check_tools.reporter import (
+    render_section_report,
+    render_section_report_csv,
+    render_section_report_json,
+)
 from iso14001_rules_check_tools.section_parser import split_into_sections
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="iso14001-rules-check")
     parser.add_argument("pdf_path", help="Path to a selectable-text PDF")
-    parser.add_argument("--json", action="store_true", help="Print JSON output")
+    output_group = parser.add_mutually_exclusive_group()
+    output_group.add_argument("--json", action="store_true", help="Print JSON output")
+    output_group.add_argument("--csv", action="store_true", help="Print CSV output")
     return parser
 
 
@@ -23,9 +29,10 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     sections = split_into_sections(text)
-    if args.json:
+    if args.csv:
+        print(render_section_report_csv(sections), end="")
+    elif args.json:
         print(render_section_report_json(sections))
     else:
         print(render_section_report(sections), end="")
     return 0
-

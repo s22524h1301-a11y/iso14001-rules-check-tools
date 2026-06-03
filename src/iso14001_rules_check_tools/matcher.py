@@ -47,6 +47,7 @@ def _score_section_against_clause(section: Section, clause: Clause) -> ClauseMat
         clause_id=clause.clause_id,
         clause_title=clause.clause_title,
         score=score,
+        matched_keywords=matched_keywords,
         reason=reason,
     )
 
