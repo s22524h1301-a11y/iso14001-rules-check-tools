@@ -20,6 +20,7 @@ def test_render_section_report_csv_outputs_header_and_match_rows():
     assert rows[0]["section_id"] == "2"
     assert rows[0]["clause_id"] == "5.2"
     assert rows[0]["matched_keywords"]
+    assert "keywords:" in rows[0]["reason"] or "title hit:" in rows[0]["reason"]
 
 
 def test_render_section_report_csv_keeps_sections_without_matches():

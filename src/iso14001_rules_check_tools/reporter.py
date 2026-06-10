@@ -45,6 +45,11 @@ def render_section_report(sections: tuple[Section, ...]) -> str:
             lines.append(cast(str, section["body"]))
         matches = cast(list[dict[str, object]], section["matches"])
         if matches:
+            top_match = matches[0]
+            lines.append(
+                f"Top match: {top_match['clause_id']} {top_match['clause_title']} "
+                f"({top_match['reason']})"
+            )
             lines.append("Matches:")
             for match in matches:
                 lines.append(f"- {match['clause_id']} {match['clause_title']}")
@@ -93,7 +98,7 @@ def render_section_report_csv(sections: tuple[Section, ...]) -> str:
                         "clause_title": match.clause_title,
                         "score": match.score,
                         "matched_keywords": "; ".join(match.matched_keywords),
-                        "reason": match.reason,
+                        "reason": _compact_reason(match.reason),
                     }
                 )
         else:
@@ -111,3 +116,11 @@ def render_section_report_csv(sections: tuple[Section, ...]) -> str:
                 }
             )
     return buffer.getvalue()
+
+
+def _compact_reason(reason: str) -> str:
+    return (
+        reason.replace("heading title hit:", "heading hit:")
+        .replace("body title hit:", "body hit:")
+        .replace("matched keywords:", "keywords:")
+    )

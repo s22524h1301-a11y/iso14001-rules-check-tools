@@ -29,4 +29,5 @@ This project uses SemVer-style versioning while it is still in active developmen
 
 - The project starts at `v0.1.0`
 - `v0.2.0` is the first reporting expansion release, adding CSV output and improved clause catalog/ranking
+- `v0.3.0` tightens high-false-positive matching and makes the text/CSV reports easier to scan
 - Future releases will move forward as the ISO 14001 clause catalog and analysis flow grow

@@ -1,6 +1,6 @@
 # ISO 14001 Rules Check Tools
 
-Current version: `v0.2.0`
+Current version: `v0.3.0`
 
 Language / 語言: [English](#english) | [中文](#中文)
 
@@ -11,7 +11,7 @@ Language / 語言: [English](#english) | [中文](#中文)
 
 ISO 14001 Rules Check Tools is a CLI utility for analyzing selectable-text PDFs and scanned PDFs, then suggesting which ISO 14001 clauses may apply to each section of the document.
 
-This repository is the standalone ISO 14001 version of the clause-checking tool. `v0.2.0` expands the reporting layer with CSV output and improves the clause catalog/ranking while keeping the pipeline explainable.
+This repository is the standalone ISO 14001 version of the clause-checking tool. `v0.3.0` tightens high-false-positive clause matching and adds a clearer top-match summary while keeping the pipeline explainable.
 
 ### What it does
 
@@ -26,7 +26,7 @@ This repository is the standalone ISO 14001 version of the clause-checking tool.
 - Input: PDF
 - PDF types: selectable-text electronic PDFs and scanned PDFs with OCR fallback
 - Output: likely ISO 14001 clause matches per section
-- Current focus: a stable, explainable MVP with spreadsheet-friendly reporting
+- Current focus: a stable, explainable MVP with stronger false-positive control and spreadsheet-friendly reporting
 
 ### Installation
 
@@ -80,12 +80,14 @@ The CLI prints section headings, matched clause IDs, and section bodies by defau
 - [x] Text, JSON, and CSV reporting pipeline
 - [x] Basic tests
 - [x] Initial ISO 14001 clause catalog structure
-- [ ] ISO 14001 clause coverage refinement
-- [ ] Domain-specific matching improvements
+- [x] High-false-positive matching refinement for core clauses
+- [x] Text report top-match summary
+- [ ] Further clause coverage refinement
+- [ ] Additional domain-specific matching improvements
 
 ### Open issues
 
-- Clause matching still needs tuning to reduce false positives
+- Clause matching still needs tuning to reduce false positives, but the noisiest cases have been tightened
 - PDF layouts vary a lot, so structure parsing will need continued refinement
 - This is still a CLI tool, not a web UI
 - The clause catalog will need to grow as we refine environmental-use cases
@@ -109,6 +111,7 @@ For development and version rules, see [docs/VERSIONING.md](docs/VERSIONING.md).
 
 ### Release status
 
+- `v0.3.0` tightens false-positive control for `6.1.3` and `8.1`, adds a clearer top-match summary, and keeps CSV output easy to scan.
 - `v0.2.0` adds CSV reporting and improves clause catalog/ranking for spreadsheet-friendly review.
 - The core pipeline remains in place, and the catalog will continue to be refined for environmental management use cases.
 
@@ -119,7 +122,7 @@ For development and version rules, see [docs/VERSIONING.md](docs/VERSIONING.md).
 
 ISO 14001 Rules Check Tools 是一個 CLI 工具，用來分析可直接擷取文字的 PDF 與掃描式 PDF，並推測文件各章節可能對應的 ISO 14001 條文。
 
-這個 repo 是獨立的 ISO 14001 版本。`v0.2.0` 擴充了 CSV 報表輸出，也改善了條文 catalog 與 ranking，同時維持流程可理解、可驗證。
+這個 repo 是獨立的 ISO 14001 版本。`v0.3.0` 針對高誤判條文做了收斂，也補上更清楚的 top-match 摘要，同時維持流程可理解、可驗證。
 
 ### 主要功能
 
@@ -217,5 +220,5 @@ CLI 預設會輸出章節標題、匹配到的條文 ID 與章節內容。若要
 
 ### Release 狀態
 
-- `v0.2.0` 新增 CSV 報表，並改善條文 catalog / ranking，方便用試算表進行檢視。
+- `v0.3.0` 收斂了 `6.1.3` 與 `8.1` 的誤判，也讓 text / CSV 報表更容易檢視。
 - 核心流程維持不變，條文 catalog 會持續針對環境管理情境調整與擴充。

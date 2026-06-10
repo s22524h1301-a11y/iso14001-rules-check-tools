@@ -130,6 +130,30 @@ def test_applicable_requirements_section_matches_clause_6_1_3():
     assert matches[0].clause_id == "6.1.3"
 
 
+def test_general_policy_language_does_not_trigger_clause_6_1_3():
+    section = Section(
+        section_id="6.1.3.false",
+        heading="General policy review",
+        body="The organization reviews policies and responsibilities each quarter.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert all(match.clause_id != "6.1.3" for match in matches)
+
+
+def test_generic_process_language_does_not_trigger_clause_8_1():
+    section = Section(
+        section_id="8.1.false",
+        heading="Process description",
+        body="The team describes standard workflow steps and common operating practices.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert all(match.clause_id != "8.1" for match in matches)
+
+
 def test_continual_improvement_section_matches_clause_10_3():
     section = Section(
         section_id="10.3.1",

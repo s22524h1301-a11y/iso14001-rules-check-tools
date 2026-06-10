@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.3.0] - 2026-06-10
+
+### Added
+
+- Top-match summary lines in the plain-text report
+- Slightly more compact CSV reason strings for easier review
+- Regression coverage for high-false-positive clause matches
+
+### Changed
+
+- Tightened the clause catalog for `6.1.3` and `8.1`
+- Reduced noisy keyword hits that caused generic policy or process text to match too broadly
+- Updated README, versioning, and release metadata for the new release
+
+### Notes
+
+- JSON output remains available and structurally stable
+- The project remains a standalone ISO 14001 tool, separate from the ISO 9001 repository
+
 ## [v0.2.0] - 2026-06-03
 
 ### Added
