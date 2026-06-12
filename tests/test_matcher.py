@@ -21,6 +21,54 @@ def test_environmental_policy_section_prefers_clause_5_2():
     assert "environmental policy" in matches[0].matched_keywords
 
 
+def test_context_language_matches_clause_4_1():
+    section = Section(
+        section_id="4.1.1",
+        heading="Context of the organization",
+        body="The organization determines external and internal issues relevant to its purpose.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "4.1"
+
+
+def test_scope_language_matches_clause_4_3():
+    section = Section(
+        section_id="4.3.1",
+        heading="Scope of the EMS",
+        body="The scope of the environmental management system considers boundaries and applicability.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "4.3"
+
+
+def test_leadership_language_matches_clause_5_1():
+    section = Section(
+        section_id="5.1.1",
+        heading="Leadership and commitment",
+        body="Top management demonstrates leadership and commitment to the environmental management system.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "5.1"
+
+
+def test_roles_language_matches_clause_5_3():
+    section = Section(
+        section_id="5.3.1",
+        heading="Roles and responsibilities",
+        body="Responsibilities and authorities are assigned and communicated within the organization.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "5.3"
+
+
 def test_empty_catalog_returns_no_matches():
     section = Section(
         section_id="9.9",
@@ -130,6 +178,42 @@ def test_applicable_requirements_section_matches_clause_6_1_3():
     assert matches[0].clause_id == "6.1.3"
 
 
+def test_planning_action_language_matches_clause_6_1_4():
+    section = Section(
+        section_id="6.1.4.1",
+        heading="Planning action",
+        body="The organization plans actions to address significant environmental aspects and compliance obligations.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "6.1.4"
+
+
+def test_planning_actions_to_achieve_objectives_matches_clause_6_2_2():
+    section = Section(
+        section_id="6.2.2.1",
+        heading="Planning actions to achieve environmental objectives",
+        body="The organization defines responsibilities and time frames for planning actions to achieve environmental objectives.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "6.2.2"
+
+
+def test_compliance_evaluation_language_matches_clause_9_1_2():
+    section = Section(
+        section_id="9.1.2.1",
+        heading="Evaluation of compliance",
+        body="The organization periodically assesses compliance with legal and other requirements.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "9.1.2"
+
+
 def test_general_policy_language_does_not_trigger_clause_6_1_3():
     section = Section(
         section_id="6.1.3.false",
@@ -164,5 +248,17 @@ def test_continual_improvement_section_matches_clause_10_3():
     matches = match_section(section, default_clause_catalog())
 
     assert matches[0].clause_id == "10.3"
+
+
+def test_general_improvement_language_matches_clause_10_1():
+    section = Section(
+        section_id="10.1.1",
+        heading="General improvement",
+        body="The organization identifies opportunities for improvement and acts on them.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "10.1"
 
 

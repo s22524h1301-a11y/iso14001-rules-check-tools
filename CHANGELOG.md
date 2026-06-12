@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.4.0] - 2026-06-12
+
+### Added
+
+- Broader clause catalog coverage across `4.x`, `5.x`, `6.x`, `9.x`, and `10.x`
+- More realistic keyword coverage for context, policy, planning, monitoring, audit, and improvement language
+- Regression tests for the expanded clause families
+
+### Changed
+
+- Refined clause descriptions and keywords to better reflect real ISO 14001:2015 wording
+- Kept the existing PDF/OCR pipeline and report formats unchanged
+- Updated README, versioning, and package metadata for the new release
+
+### Notes
+
+- JSON, plain text, and CSV output remain available
+- The project remains a standalone ISO 14001 tool, separate from the ISO 9001 repository
+
 ## [v0.3.0] - 2026-06-10
 
 ### Added
