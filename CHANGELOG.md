@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.5.0] - 2026-06-17
+
+### Added
+
+- Stronger keyword coverage for weak `7.x` clauses and `8.2` emergency preparedness language
+- Regression tests for resources, competence, awareness, communication, documented information, and emergency response matching
+
+### Changed
+
+- Refined `7.1`, `7.2`, `7.3`, `7.4`, `7.5`, and `8.2` catalog entries to better reflect ISO 14001:2015 wording
+- Updated README, versioning, and package metadata for the new release
+
+### Notes
+
+- The PDF/OCR pipeline remains unchanged
+- Text, JSON, and CSV output remain available
+- The project remains a standalone ISO 14001 tool, separate from the ISO 9001 repository
+
 ## [v0.4.0] - 2026-06-12
 
 ### Added

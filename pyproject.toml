@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "iso14001-rules-check-tools"
-version = "0.4.0"
+version = "0.5.0"
 description = "Suggest likely ISO 14001 clauses for sections of a PDF"
 requires-python = ">=3.12"
 dependencies = ["pypdf>=5.0.0"]

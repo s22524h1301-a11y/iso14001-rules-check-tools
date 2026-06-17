@@ -262,3 +262,87 @@ def test_general_improvement_language_matches_clause_10_1():
     assert matches[0].clause_id == "10.1"
 
 
+def test_resources_language_matches_clause_7_1():
+    section = Section(
+        section_id="7.1.1",
+        heading="Resources and support",
+        body="The organization provides personnel, infrastructure, and monitoring and measuring resources for the EMS.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "7.1"
+
+
+def test_competence_language_matches_clause_7_2():
+    section = Section(
+        section_id="7.2.1",
+        heading="Competence and training",
+        body="Training needs are identified and competence records are retained for relevant personnel.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "7.2"
+
+
+def test_awareness_language_matches_clause_7_3():
+    section = Section(
+        section_id="7.3.1",
+        heading="Awareness",
+        body="Employees are aware of the environmental policy, significant environmental aspects, and the implications of not conforming.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "7.3"
+
+
+def test_internal_communication_language_matches_clause_7_4_2():
+    section = Section(
+        section_id="7.4.2.1",
+        heading="Internal communication",
+        body="Internal communication includes employee communication and internal briefings about EMS changes.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "7.4.2"
+
+
+def test_external_communication_language_matches_clause_7_4_3():
+    section = Section(
+        section_id="7.4.3.1",
+        heading="External communication",
+        body="External reporting and regulatory communication are handled through the assigned process.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "7.4.3"
+
+
+def test_documented_information_language_matches_clause_7_5():
+    section = Section(
+        section_id="7.5.1",
+        heading="Control of documented information",
+        body="Document control includes approval, version control, retention, access, and archive rules.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "7.5"
+
+
+def test_emergency_preparedness_language_matches_clause_8_2():
+    section = Section(
+        section_id="8.2.1",
+        heading="Emergency preparedness and response",
+        body="The emergency plan covers spill response, evacuation, drills, and incident response for accidental releases.",
+    )
+
+    matches = match_section(section, default_clause_catalog())
+
+    assert matches[0].clause_id == "8.2"
+
+
